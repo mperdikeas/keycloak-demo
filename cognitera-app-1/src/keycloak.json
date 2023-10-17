@@ -1,0 +1,16 @@
+{
+  "url": "http://localhost:8080",
+  "realm": "cognitera-apps",
+  "clientId": "cognitera-app-1",
+
+
+  "___COMMENTS___": [
+    {"alt_init": {
+      "realm": "bookshop",
+      "auth-server-url": "http://localhost:8080/",
+      "ssl-required": "external",
+      "resource": "bookBox",
+      "public-client": true,
+      "confidential-port": 0
+    }}]
+}

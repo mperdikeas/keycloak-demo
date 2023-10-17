@@ -4,16 +4,13 @@ import Nav from './components/Nav';
 import WelcomePage from './pages/Homepage';
 import SecuredPage from './pages/Securedpage';
 
-
+import Data from "./keycloak.json";
 
 
 import Keycloak from 'keycloak-js';
 
-const keycloak = new Keycloak({
-  url: 'http://localhost:8080',
-  realm: 'cognitera-apps',
-  clientId: 'cognitera-app-1'
-});
+const keycloak = new Keycloak(Data);
+
 
 const authenticated_p = keycloak.init(
   {
