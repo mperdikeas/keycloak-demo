@@ -4,13 +4,37 @@ import Nav from './components/Nav';
 import WelcomePage from './pages/Homepage';
 import SecuredPage from './pages/Securedpage';
 
-import { ReactKeycloakProvider } from "@react-keycloak/web";
-import keycloak from './Keycloak';
 
-function App() {
-  return (
-    <div>
-      <ReactKeycloakProvider authClient={keycloak}>
+
+
+import Keycloak from 'keycloak-js';
+
+const keycloak = new Keycloak({
+  url: 'http://localhost:8080',
+  realm: 'cognitera-apps',
+  clientId: 'cognitera-app-1'
+});
+
+const authenticated_p = keycloak.init(
+  {
+    onLoad: 'login-required',
+    /*
+    onLoad: 'check-sso',
+    silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html',
+    pkceMethod: 'S256',
+*/
+  }
+);
+authenticated_p.then((result)=>{
+  console.log(result);
+  console.log(`User is ${result ? 'authenticated' : 'not authenticated'}`);
+}).catch( (error)=>{
+  console.error('Failed to initialize adapter:', error);
+});
+
+  function App() {
+    return (
+      <div>
         <Nav />
         <BrowserRouter>
           <Routes>
@@ -18,9 +42,8 @@ function App() {
             <Route path='/secured' element={<SecuredPage />} />
           </Routes>
         </BrowserRouter>
-      </ReactKeycloakProvider>
-    </div>
-  );
-}
+      </div>
+    );
+  }
 
-export default App;
+  export default App;
