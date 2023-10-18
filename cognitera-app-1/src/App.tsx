@@ -4,30 +4,9 @@ import Nav from './components/Nav';
 import WelcomePage from './pages/Homepage';
 import SecuredPage from './pages/Securedpage';
 
-import Data from "./keycloak.json";
+import {Protected} from './components/Protected';
 
 
-import Keycloak from 'keycloak-js';
-
-const keycloak = new Keycloak(Data);
-
-
-const authenticated_p = keycloak.init(
-  {
-    onLoad: 'login-required',
-    /*
-    onLoad: 'check-sso',
-    silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html',
-    pkceMethod: 'S256',
-*/
-  }
-);
-authenticated_p.then((result)=>{
-  console.log(result);
-  console.log(`User is ${result ? 'authenticated' : 'not authenticated'}`);
-}).catch( (error)=>{
-  console.error('Failed to initialize adapter:', error);
-});
 
   function App() {
     return (
@@ -36,7 +15,12 @@ authenticated_p.then((result)=>{
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<WelcomePage />} />
-            <Route path='/secured' element={<SecuredPage />} />
+            <Route path='/login' element={<div>welcome to the login page</div>} />
+            <Route path='/secured' element={(
+              <Protected>
+                <SecuredPage />
+              </Protected>
+            )} />
           </Routes>
         </BrowserRouter>
       </div>

@@ -1,7 +1,10 @@
 npx create-react-app cognitera-app-1 --template typescript
 
 
-... followed by
+... followed by code and ideas from:
+
     https://www.youtube.com/watch?v=q50LxyGtEf0&t=327s&ab_channel=NikoK%C3%B6bler%28%40dasniko%29-KeycloakExpert
+    https://github.com/karthik947/keycloakdemo1
+    https://github.com/dasniko/keycloak-reactjs-demo/blob/main/src/components/Welcome.jsx
     https://blog.logrocket.com/implement-keycloak-authentication-react/
 
